@@ -8,9 +8,9 @@ recommend protocol for preparing artificial media for Plant Tissue
 Culture experiments.
 
 Students offering Agricultural Biotechnology as a programme in KNUST
-have to manually calculate for the various concentration needed in order
-to get a working solution for their experiments.
+have to manually calculate for the various concentrations needed in
+order to get a working solution for their experiments.
 
-We sought to come up with a function to help do that easily with the
-intention on creating a shiny web app for as an alternative to those not
-really inclined in R.
+We aim to develop a function to help do that easily with the intention
+on creating a shiny web app as an alternative for users not really
+inclined in R.
