@@ -8,8 +8,23 @@ library(roxygen2)
 MS_Media_Assistant <- function(volume_of_stock = "Total volume of stock you wish to prepare",
                                volume_of_MS_media = "Total volume of Ms media for experiment") {
   
+ # To check and prompt if a parameter has a missing value.
+  if(missing(volume_of_stock)) {
+    stop("Error: volume_of_stock parameter is missing")
+  }
+  
+  if(missing(volume_of_MS_media)) {
+    stop("Error: volume_of_MS_media parameter is missing")
+  }
+  
+  # To check and prompt if the paramter value is not numeric
+  if(!is.numeric(c(volume_of_stock, volume_of_MS_media)) == TRUE) {
+    stop("Input parameter values should be numbers only")
+  }
+  
+   
   # Empty dataframe to store the various reagents and their weights.
-  MS_media_table <- as.data.frame(matrix(nrow = 31,ncol = 3))
+  MS_media_table <- as.data.frame(matrix(nrow = 31, ncol = 3))
   
   # Assigning dynamic column names to Ms_media_table
   names(MS_media_table) <- c("Constituent of Stock", paste("Quantity (g/",volume_of_stock,"ml)"), 
@@ -35,17 +50,17 @@ MS_Media_Assistant <- function(volume_of_stock = "Total volume of stock you wish
    
   # Using a for loop to fill columns 1 to 3  easily.
   for(i in 1:length(Vec1)) {
-    MS_media_table[i,1] <- Vec1[i]
+    MS_media_table[i,1] <- Vec1[i] # column 1
     
   }
   
   for(i in 1:length(Vec2)) {
-    MS_media_table[i,2] <- Vec2[i]
+    MS_media_table[i,2] <- Vec2[i] # column 2
     
   }
   
   for(i in 1:length(Vec3)) {
-    MS_media_table[i,3] <- Vec3[i]
+    MS_media_table[i,3] <- Vec3[i] # column 3
     
   }
    
@@ -62,9 +77,10 @@ MS_Media_Assistant <- function(volume_of_stock = "Total volume of stock you wish
                                                                   23,24,25,26),2])* catalyst1
   
   # Column 3 adjuster per input value - convert to numeric
-  MS_media_table[c(2, 9, 18, 22, 29, 30, 31), 3] <- as.numeric(MS_media_table[c( 2, 9, 18, 22, 29, 30, 31 ), 3]) * catalyst1 * catalyst2
+  MS_media_table[c(2, 9, 18, 22, 29, 30, 31), 3] <- as.numeric( MS_media_table[c( 2, 9, 18, 22, 29, 30, 31 ), 3]) * catalyst1 * catalyst2
  
   return(MS_media_table = MS_media_table)
 
 }
-MS_Media_Assistant(500, 400)
+
+MS_Media_Assistant(1000,400) 
